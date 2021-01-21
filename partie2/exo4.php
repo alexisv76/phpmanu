@@ -53,4 +53,5 @@ switch ($magnitude)
         echo "Désolé, je n'ai pas de message à afficher pour cette magnitude";
 }
 
+
 ?>

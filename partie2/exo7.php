@@ -1,6 +1,6 @@
 <?php
   $var_b = 'Je suis une variable qui à une valeur';
-  if ($var_b )
+  if (isset($var_b ))
       {
           echo $var_b;
       } 
