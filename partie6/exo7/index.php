@@ -3,33 +3,41 @@
   <head>
     <meta charset="utf-8">
     <title> exo php </title>
-    <link rel="stylesheet" href="style.css">
   </head>
   <body>
 
   <?php 
-if (isset($_POST['name'])) {
-    echo "bonjour ${_POST['civilite']} ${_POST['name']} ${_POST['firstname']} 
-    nous avous bien reçu ".$_FILES['userfile']['name'] ;
-}
-else{
-  echo
-'<form enctype="multipart/form-data" action="index.php" method="Post">
-<label for="civilité">Choose a pet:</label>
+ if(isset($_POST['btnSubmit'])){
+  var_dump($_FILES);
+  $imageInfos = explode("/",$_FILES["myFile"]["type"]);
+  var_dump($imageInfos);
+  
 
-<select name="civilite" id="civilite" required>
-    <option value="">--Please choose an option--</option>
-    <option value="Mr">Mr</option>
-    <option value="Mme">Mme</option>
-    </select>
- <p>Votre nom : <input type="text" name="name" required /></p>
- <p>Votre prenom : <input type="text" name="firstname" required /></p>
- <input type="hidden" name="MAX_FILE_SIZE" value="30000" />
- Envoyez ce fichier : <input name="userfile" type="file" accept=".pdf" />
- <p><input type="submit" value="OK" required></p>
-</form>';
-}
-
+  ?>
+  
+  <p>Bonjour <?= $_POST['gender']." ",  $_POST['lastname']." " ,  $_POST['firstname']?> 
+        <br> nom de fichier  : <?= $_FILES['myFile']['name']?> <br>
+        l'extension de votre fichier est: <?=$imageInfos[1] ?> </p>
+        
+<?php   
+}else
+{
 ?>
+  <form method="post" action="" enctype="multipart/form-data">
+  <label for="gender">Civilité : </label>
+  <select id="gender" name="gender" required>
+      <option value="" disabled selected>-- Choisir une civilité --</option>
+      <option value="Mme">Mme</option>
+      <option value="Mr">Mr</option>
+  </select>
+  <label for="firstname">Prénom :</label>
+  <input type="text" id="firstname" name="firstname" required placeholder="Jean">
+  <label for="lastname">Nom : </label>
+  <input type="text" id="lastname" name="lastname" required placeholder="MARTIN">
+  <label for="myFile">Fichier : </label>
+  <input type="file" id="myFile" name="myFile" required>
+  <input name="btnSubmit" type="submit" value="Envoyer">
+</form>
+<?php }; ?>
 </body>
 </html>

@@ -8,13 +8,17 @@
   <body>
   <?php
   
-  if (mime_content_type($_FILES["userfile"]["tmp_name"]) == 'image/jpeg'){
+  if (mime_content_type($_FILES["userfile"]["tmp_name"]) == 'image/jpeg')
+  {
+    var_dump(mime_content_type($_FILES["userfile"]["tmp_name"]));
+    var_dump($_FILES['userfile']);
     $filename = "image/".$_FILES['userfile']['name'];
     move_uploaded_file($_FILES["userfile"]["tmp_name"],$filename);  
   }
   else
   {
     header('Location: index.php');
+    exit;
   }
 
 ?>
@@ -24,7 +28,7 @@
     nous avous bien reçu ".$_FILES['userfile']['name'] ;?>
     </div>
     <div>
-<?php echo "vous êtes née le ".$_POST['dateN'];?>
+<?php echo 'vous êtes née le <input type="date" value="' . $_POST['dateN'] . '">' ;?>
     </div>
 
 </body>

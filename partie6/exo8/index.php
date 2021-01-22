@@ -10,21 +10,28 @@
   <?php 
 if (isset($_POST['name'])) {
     var_dump($_FILES);
+    var_dump(pathinfo($_FILES['userfile']['name']));
+    var_dump(mime_content_type($_FILES["userfile"]["tmp_name"]));
     echo "bonjour ${_POST['civilite']} ${_POST['name']} ${_POST['firstname']} 
-    nous avous bien reçu ".$_FILES['userfile']['name'] ;
+    <br> nous avons bien reçu ".$_FILES['userfile']['name']  ;
+
     if (pathinfo($_FILES['userfile']['name'])['extension'] == "pdf") {
         echo "<br>"; 
         echo mime_content_type($_FILES["userfile"]["tmp_name"]);
         
+        
     }
         else {
+          echo "<br>";
+        echo "ce n'est pas un pdf";
         echo "<br>";
         echo mime_content_type($_FILES["userfile"]["tmp_name"]);
         
         }
 }
-else{
-  echo
+else
+{
+  ?>
 '<form enctype="multipart/form-data" action="index.php" method="Post">
 <label for="civilité">Choose a pet:</label>
 
@@ -39,6 +46,7 @@ else{
  Envoyez ce fichier : <input name="userfile" type="file" accept=".pdf" />
  <p><input type="submit" value="OK" required></p>
 </form>';
+<?php 
 }
 
 ?>
